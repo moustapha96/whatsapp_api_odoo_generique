@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_whatsapp_message_form" model="ir.ui.view">
+            <field name="name">whatsapp.message.form</field>
+            <field name="model">whatsapp.message</field>
+            <field name="arch" type="xml">
+                <form string="Message WhatsApp">
+                    <header>
+                        <button name="send_message" string="Envoyer" type="object" class="oe_highlight" states="draft"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="recipient"/>
+                            <field name="message_type"/>
+                            <field name="message"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_whatsapp_message_tree" model="ir.ui.view">
+            <field name="name">whatsapp.message.tree</field>
+            <field name="model">whatsapp.message</field>
+            <field name="arch" type="xml">
+                <tree string="Messages WhatsApp">
+                    <field name="recipient"/>
+                    <field name="message_type"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_whatsapp_message" model="ir.actions.act_window">
+            <field name="name">Messages WhatsApp</field>
+            <field name="res_model">whatsapp.message</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_whatsapp" name="WhatsApp" sequence="10"/>
+        <menuitem id="menu_whatsapp_message" name="Messages" parent="menu_whatsapp" action="action_whatsapp_message"/>
+    </data>
+</odoo>
